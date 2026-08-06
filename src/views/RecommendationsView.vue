@@ -11,7 +11,6 @@ export default {
   data() {
     return {
       recommendations: [],
-      loading: false,
       errorMessage: ''
     }
   },
@@ -19,7 +18,6 @@ export default {
   methods: {
     async loadRecommendations() {
       const uid = localStorage.getItem('uid')
-      this.loading = true
       this.errorMessage = ''
 
       try {
@@ -50,8 +48,6 @@ export default {
       } catch (error) {
         console.error('Error while loading recommendations:', error)
         this.errorMessage = 'Something went wrong'
-      } finally {
-        this.loading = false
       }
     }
   },

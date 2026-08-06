@@ -2,9 +2,8 @@
   <div class="page detail-page">
 
     <button class="btn-back" @click="$router.push('/properties')">← Back to list</button>
-    <div v-if="loading" class="loading-state">Loading...</div>
 
-    <article v-else-if="property" class="detail-card">
+    <article v-if="property" class="detail-card">
       <PropertyCard :property="property" variant="detail" />
     </article>
 
@@ -23,8 +22,7 @@ export default {
   props: ['id'],
   data() {
     return {
-      property: null,
-      loading: true
+      property: null
     }
   },
   async mounted() {
@@ -32,7 +30,6 @@ export default {
   },
   methods: {
     async loadProperty() {
-      this.loading = true
       const uid = localStorage.getItem('uid')
       if (!uid) addRecentView(Number(this.id))
 
@@ -52,8 +49,6 @@ export default {
       } catch (error) {
         console.error('Failed to load property:', error)
         this.property = null
-      } finally {
-        this.loading = false
       }
     }
   }
@@ -89,9 +84,4 @@ export default {
   margin: 0 auto;
 }
 
-.loading-state, .empty-state {
-  text-align: center;
-  padding: 60px 24px;
-  color: var(--text-muted);
-}
 </style>

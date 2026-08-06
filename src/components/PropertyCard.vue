@@ -59,8 +59,7 @@ export default {
     property: { type: Object, required: true },
     variant: {
       type: String,
-      default: 'grid', // 'grid' | 'detail'
-      validator: (v) => ['grid', 'detail'].includes(v)
+      default: 'grid'
     }
   },
   computed: {
